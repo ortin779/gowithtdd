@@ -1,4 +1,4 @@
-package main
+package helloworld
 
 import "testing"
 
@@ -13,6 +13,20 @@ func TestHello(t *testing.T) {
 	t.Run("saying hello to people in spanish", func(t *testing.T) {
 		got := Hello("Nitro", "Spanish")
 		want := "Hola, Nitro"
+
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("saying hello to people in french", func(t *testing.T) {
+		got := Hello("Nitro", "French")
+		want := "Bonjour, Nitro"
+
+		assertCorrectMessage(t, got, want)
+	})
+
+	t.Run("saying hello to people in Telugu", func(t *testing.T) {
+		got := Hello("Nitro", "Telugu")
+		want := "Namasthey, Nitro"
 
 		assertCorrectMessage(t, got, want)
 	})
