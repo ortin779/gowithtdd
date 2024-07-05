@@ -1,6 +1,9 @@
 package arraysandslices
 
-import "testing"
+import (
+	"reflect"
+	"testing"
+)
 
 func TestSum(t *testing.T) {
 	t.Run("collection of 5 numbers", func(t *testing.T) {
@@ -14,4 +17,23 @@ func TestSum(t *testing.T) {
 				expected, numbers)
 		}
 	})
+}
+
+func TestSumAll(t *testing.T) {
+	collections := [][]int{
+		{1, 2, 3},
+		{1, 2},
+	}
+	got := SumAll(collections...)
+	expected := []int{6, 3}
+
+	if !reflect.DeepEqual(got, expected) {
+		t.Errorf("got %v, expected %v", got, expected)
+	}
+}
+
+func BenchmarkSumAll(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		SumAll([][]int{{1, 2, 3}, {2, 3}}...)
+	}
 }
